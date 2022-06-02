@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    {{#each erros}}
+        <div>{{texto}}</div>
+    {{else}}
+
+    {{/each}}
+    <h1>Cadastro</h1>
+        <form action="/usuario/cadastrado" method="POST">
+            <!--Nome-->
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" placeholder="Nome do usuario" class="form-control">
+            <!--Sobrenome-->
+            <label for="sobrenome">Sobrenome: </label>
+            <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome do usuario" class="form-control">
+            <br> <br>
+            <!--E-mail-->
+            <label for="email">E-mail: </label>
+            <input type="text" id="email" name="email" placeholder="E-mail do usuario" class="form-control">
+            <br> <br>
+            <!--Data de Nascimento-->
+            <label for="dataN">Data de Nascimento: </label>
+            <input type="text" id="data_nascimento" name="data_nascimento" placeholder="Nascimento do usuario" class="form-control">
+            <!--Gênero-->
+            <label for="genero">Gênero: </label>
+            <input type="text" id="genero" name="genero" placeholder="Gênero do usuario" class="form-control">
+            <br> <br>
+            <!--CPF-->
+            <label for="cpf">CPF: </label>
+            <input type="text" id="cpf" name="cpf" placeholder="CPF do usuario" class="form-control">
+            <!--Celular-->
+            <label for="celular">Celular: </label>
+            <input type="text" id="celular" name="celular" placeholder="Cel do usuario" class="form-control">
+            <br> <br>
+            <!--Endereço-->
+            <label for="endereco">Endereço: </label>
+            <input type="text" id="endereco" name="endereco" placeholder="Endereco do usuario" class="form-control">
+            <!--Cidade-->
+            <label for="cidade">Cidade: </label>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade do usuario" class="form-control">
+            <br> <br>
+            <!--Senha-->
+            <label for="senha">Senha: </label>
+            <input type="text" id="senha" name="senha" placeholder="Senha do usuario" class="form-control">
+            <!--Senha Repitida-->
+            <label for="rsenha">Repita a Senha: </label>
+            <input type="text" id="rsenha" name="rsenha" placeholder="Repetir Senha do usuario" class="form-control">    
+            <br> <br>
+            <button type="submit">Cadastrar Usuario</button>        
+        </form>
+</body>
+</html>
