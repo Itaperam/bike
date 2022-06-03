@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/login.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -10,23 +11,31 @@
     <!--
         ###NÃO FUNCIONANDO###
         Mensagem de conta valida ou não   
-    -->
+    
     {{#if error}}
         <p>DEU RUIM</p>
     {{else}}
             
     {{/if}}
-    <h1>Login: </h1>
-    <form action="/usuario/login" method="POST">
-        <label for="email">E-mail: </label>
-        <input type="text" class="" name="email" required>
-        <br> <br>
-        <label for="senha">Senha: </label>
-        <input type="text" class="" name="senha" required>
-        <br> <br>
-        <button class="" type="submit">Entrar</button>
-    </form>
-    <br>
-    <a href="/usuario/cadastro"><button>Cadastrar Novo Usuario</button></a>
+    -->
+    <div class="login-box">
+        <form action="/usuario/login" method="POST">
+            <div class="textbox">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" placeholder="E-mail" name="email">
+            </div>
+
+            <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" placeholder="Senha" name="senha">
+            </div>
+            <button class="btn" type="submit">Entrar</button>
+        </form>
+
+        <br>
+        <a href="#">Esqueceu sua senha?</a>
+        <hr>
+        <a href="/usuario/cadastro"><button class="btn">Cadastrar Novo Usuario</button></a>
+    </div>
 </body>
 </html>
