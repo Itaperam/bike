@@ -8,12 +8,7 @@
     <title>Login</title>
 </head>
 <body>
-    {{#if error}}
-        <div class="">{{this.error}}</div>
-        <p>Teste</p>
-    {{else}}
-
-    {{/if}}
+    <p style="color: Red;">Login invalido ou senha invalida</p>
     <div class="login-box">
         <form action="/usuario/login" method="POST">
             <div class="textbox">
@@ -31,8 +26,7 @@
         <br>
         <a href="#">Esqueceu sua senha?</a>
         <hr>
-        
-        <a href="/usuario/cadastro"><button class="btn">Crie uma conta</button></a>
+        <a href="/usuario/cadastro"><button class="btn">Crie</button></a>
     </div>
 </body>
 </html>

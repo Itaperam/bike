@@ -10,14 +10,14 @@ module.exports = function(passport){
     passport.use(new localStrategy({usernameField: 'email', passwordField: 'senha'}, (email, senha, done) => {
         Usuario.findOne({email: email}).then((usuario) => {
             if(!usuario){
-                return done(null, false, {error: "E-mail ou Senha Inavalidos"})
+                return done(null, false, {error: "E-mail invalida"})
             }
 
             bcrypt.compare(senha, usuario.senha, (erro, batem) => {
                 if(batem){
                     return done(null, usuario)
                 } else{
-                    return done(null , false, {error: "E-mail ou Senha Inavalidos"})
+                    return done(null , false, {error: "Senha Invalida"})
                 }
             })
         })
@@ -28,8 +28,8 @@ module.exports = function(passport){
     })
 
     passport.deserializeUser((id, done) => {
-        Usuario.findeById(ide, (err, usuario) => {
-            done(err, usuario)
+        Usuario.findeById(id, (error, usuario) => {
+            done(error, usuario)
         })
     })
 }

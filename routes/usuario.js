@@ -11,16 +11,18 @@ router.get('/', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    if(req.query.fail)
-        res.render('login', {message: "Usuario ou senha invalidos"})
-    else
-    res.render('login', {message: null})
+    res.render('login')
+})
+
+router.get('/login/invalido', (req, res) => {
+    res.render('loginInvalido')
 })
 
 router.post('/login', (req, res, next) => {
-    passport.authenticate("local", {
+    passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/usuario/login',
+        //failureRedirect: '/usuario/login/invalido',
+        failureRedirect: '/usuario/login/invalido',
         failureFlash: true
     })(req, res, next)
 })
