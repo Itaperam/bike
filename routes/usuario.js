@@ -28,13 +28,14 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/cadastro', (req, res) => {
+    //renderiza cadastro.handlebars
     res.render('cadastro')
 })
 
 router.post('/cadastrado', (req, res) => {
 
     var erros = [];
-
+    //recupera e analisa dados do formulário
     if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null){
         erros.push({texto: "Nome inválido ou vazio"})
     }

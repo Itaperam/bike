@@ -7,6 +7,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('connect-flash')
+const home = require('./routes/home')
 const usuario = require('./routes/usuario')
 const passport = require('passport')
 require('./config/auth')(passport)
@@ -23,7 +24,7 @@ require('./config/auth')(passport)
     app.use(passport.initialize())
     app.use(passport.session())
     app.use(flash())
-    //Middleware
+    //Middleware - responsável por intermediar todas as requisições http
     app.use((req, res, next) => {
         //res.locals.success_msg = req.flash('success_msg')
         //res.locals.error_msg = req.flash('error_msg')
@@ -56,6 +57,7 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 //Rotas Secundarias
+app.use('/home', home)
 app.use('/usuario', usuario)
 
 //Outros
