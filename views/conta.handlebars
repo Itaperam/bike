@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta</title>
+</head>
+<body>
+
+    {{#if logado}}
+        
+    {{else}}
+
+    {{/if}}
+    <div id="painel_central">
+
+        <div id="menu">
+            <p><a href="/usuario/dados_acesso">Dados de acesso</a></p>
+            <p><a href="/usuario/dados_pessoais">Dados pessoais</a></p>
+            <p><a href="/">Voltar para a página inicial</a></p>
+        </div>
+
+        <div>
+            <h1>Dados da sua conta</h1>
+            <p>Nome do usuario: {{logado.nome}} {{logado.sobrenome}}</p>
+            <p>E-mail do usuário: {{logado.email}}</p>
+            <p><a href="/usuario/alterar_email">Alterar e-mail</a></p>
+            <p><a href="/usuario/alterar_senha">Alterar a senha</a></p>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

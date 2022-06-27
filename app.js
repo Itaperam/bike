@@ -24,11 +24,13 @@ require('./config/auth')(passport)
     app.use(passport.initialize())
     app.use(passport.session())
     app.use(flash())
+    
     //Middleware - responsável por intermediar todas as requisições http
     app.use((req, res, next) => {
         //res.locals.success_msg = req.flash('success_msg')
         //res.locals.error_msg = req.flash('error_msg')
         //res.locals.error = req.flash("error")
+        res.locals.user = req.user || null;
         next()
     })
 
@@ -59,6 +61,7 @@ app.get('/', (req, res) => {
 //Rotas Secundarias
 app.use('/home', home)
 app.use('/usuario', usuario)
+
 
 //Outros
 const PORT = 8081

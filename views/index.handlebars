@@ -12,6 +12,7 @@
     {{else}}
 
     {{/each}}
+
     <h1>Home</h1>
     
     <header id="cabecalho">
@@ -25,10 +26,15 @@
         </div>
 
         <div id="opcoes_usuario">
+            {{#if logado}}
+            <a href="#">Comprar</a>
+            <a href="/usuario/conta">Olá, {{logado.nome}}</a>
+            {{else}}
             <a href="#">Comprar</a>
             <a href="/usuario/login">login ou cadastre-se</a>
+            {{/if}}        
         </div>
-
+        
         <nav id="menu">
             <ul>
                 <li><a href="/home/vender">Vender</a></li>

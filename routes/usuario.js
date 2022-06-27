@@ -5,6 +5,7 @@ require('../models/Usuario')
 const Usuario = mongoose.model('usuarios')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+var user1 = {}
 
 router.get('/', (req, res) => {
     res.render('index')
@@ -18,6 +19,7 @@ router.get('/login/invalido', (req, res) => {
     res.render('loginInvalido')
 })
 
+/*
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/',
@@ -25,7 +27,22 @@ router.post('/login', (req, res, next) => {
         failureRedirect: '/usuario/login/invalido',
         failureFlash: true
     })(req, res, next)
-})
+})*/
+
+router.post(
+    "/login",
+    passport.authenticate("local", {
+      failureRedirect: "/usuario/login/invalido",
+      failureFlash: true,
+    }),(req, res) => {
+        user1 = {
+            nome: req.user.nome,
+            sobrenome: req.user.sobrenome,
+            email: req.user.email
+      }
+      res.render("index", {logado: user1});
+    }
+  );
 
 router.get('/cadastro', (req, res) => {
     //renderiza cadastro.handlebars
@@ -124,6 +141,26 @@ router.post('/cadastrado', (req, res) => {
             res.render('login', {erros: erros})
         })
     }
+})
+
+router.get("/conta", (req, res) => {
+    res.render("conta", {logado: user1})
+})
+
+router.get("/alterar_email", (req, res) => {
+    res.send("alterar_email")
+})
+
+router.get("/alterar_senha", (req, res) => {
+    res.send("alterar_senha")
+})
+
+router.get("/dados_pessoais", (req, res) => {
+    res.send("dados pessoais")
+})
+
+router.get("/dados_acesso", (req, res) => {
+    res.send("dados_acesso")
 })
 
 module.exports = router
