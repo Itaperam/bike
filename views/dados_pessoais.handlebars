@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão dados pessoais</title>
+</head>
+<body>
+    {{#if logado}}
+    
+    {{else}}
+    {{/if}}
+
+    {{#each erros}}
+    <p>{{texto}}</p>
+    {{else}}
+    {{/each}}
+
+    {{#each sucesso}}
+    <p>{{texto}}</p>
+    {{else}}
+    {{/each}}
+
+    <header>
+        <a href="#">Homepage</a>
+        <nav>
+            <ul>
+                <li> <a href="#">Meus dados</a></li>
+                <li> <a href="#">Endereços cadastrados</a></li>
+                <li> <a href="#">Meus pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="painel_dados_pessoais">
+        <h1>Meus Dados</h1>
+
+        <form action="/usuario/dados_pessoais_atualizados" method="post">
+
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" value={{logado.nome}}>
+
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" name="sobrenome" id="sobrenome" value={{logado.sobrenome}}><br><br>
+
+            <label for="">Cadastrado como:</label>
+            <input type="text" name="" disabled>
+
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf" value={{logado.cpf}} ><br><br>
+
+            <label for="email">E-mail cadastrado:</label>
+            <input type="email" name="email" id="email" value={{logado.email}}>
+
+            <label for="rg">RG:</label>
+            <input type="text" name="rg" id="rg" value={{logado.rg}}><br><br>
+
+            <input type="submit" value="Atualizar">
+        </form>
+    </div>
+</body>
+</html>

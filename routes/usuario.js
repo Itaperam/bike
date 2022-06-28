@@ -36,9 +36,13 @@ router.post(
       failureFlash: true,
     }),(req, res) => {
         user1 = {
+            _id: req.user._id,
             nome: req.user.nome,
             sobrenome: req.user.sobrenome,
-            email: req.user.email
+            email: req.user.email,
+            senha: req.user.senha,
+            cpf: req.user.cpf,
+            rg: req.user.rg
       }
       res.render("index", {logado: user1});
     }
@@ -143,11 +147,12 @@ router.post('/cadastrado', (req, res) => {
     }
 })
 
-//gestão de dados
+//gestão dados acesso
 router.get("/conta", (req, res) => {
     res.render("conta", {logado: user1})
 })
 
+//gestão dados de acesso- alterar e-mail
 router.get("/alterar_email", (req, res) =>{
     res.render("alterar_email", {logado: user1})
 })
@@ -183,8 +188,143 @@ router.post("/email_alterado", (req, res) =>{
     
 })
 
+//gestão dados de acesso- alterar senha
 router.get("/alterar_senha", (req, res) =>{
     res.render("alterar_senha", {logado: user1})
 })
 
+router.post("/senha_alterada", (req, res) => {
+    var erro_senha = []
+
+
+    if(!req.body.senha_atual || typeof req.body.senha_atual == undefined || req.body.senha_atual == null){
+        erro_senha.push({texto: "Digite a sua senha atual"})
+    }
+
+    if(!req.body.nova_senha || typeof req.body.nova_senha == undefined || req.body.nova_senha == null){
+        erro_senha.push({texto: "Digite sua nova senha"})
+    }
+
+    if(erro_senha.length > 0){
+        res.render("alterar_senha", {erro: erro_senha})
+    }
+
+})
+
+//gestão dados pessoais (precisa de algumas validações)
+router.get("/dados_pessoais", (req, res) => {
+    res.render("dados_pessoais", {logado: user1})
+})
+
+router.post("/dados_pessoais_atualizados", (req, res) => {
+    var erro_dados = []
+
+    if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null){
+        erro_dados.push({texto: "Digite seu nome"})
+    }
+
+    if(!req.body.sobrenome || typeof req.body.sobrenome == undefined || req.body.sobrenome == null){
+        erro_dados.push({texto: "Digite seu sobrenome"})
+    }
+
+    if(!req.body.cpf || typeof req.body.cpf == undefined || req.body.cpf == null){
+        erro_dados.push({texto: "Digite seu CPF"})
+    }
+
+    if(!req.body.email || typeof req.body.email == undefined || req.body.email == null){
+        erro_dados.push({texto: "Digite seu e-mail"})
+    }
+
+    /*
+    if(!req.body.rg || typeof req.body.rg == undefined || req.body.rg == null){
+        erro_dados.push({texto: "Digite seu rg"})
+    }*/
+
+    if(erro_dados.length > 0){
+        res.render("dados_pessoais", {erros: erro_dados})
+    }else{
+        var user_id = user1._id
+
+        if(req.body.nome != user1.nome){
+            //atualiza nome do usuário
+            Usuario.findByIdAndUpdate(user_id, {nome: req.body.nome}, (err, docs) => {
+                if(err){
+                    erro_dados.push({texto: "Erro ao atualizar nome"})
+                    res.render("dados_pessoais", {erros: erro_dados})
+                }else{
+                    erro_dados.push({texto: "Nome atualizado com sucesso!"})
+                    res.render("dados_pessoais", {sucesso: erro_dados})
+                }
+            })
+        }
+        
+        else if(req.body.sobrenome != user1.sobrenome){
+            //atualiza sobrenome do usuário
+            Usuario.findByIdAndUpdate(user_id, {sobrenome: req.body.sobrenome}, (err, docs) => {
+                if(err){
+                    erro_dados.push({texto: "Erro ao atualizar sobrenome"})
+                    res.render("dados_pessoais", {erros: erro_dados})
+                }else{
+                    erro_dados.push({texto: "Sobrenome atualizado com sucesso!"})
+                    res.render("dados_pessoais", {sucesso: erro_dados})
+                }
+            })
+        }
+        
+        else if(req.body.cpf != user1.cpf){
+            //atualiza CPF do usuário
+            Usuario.findOne({cpf: req.body.cpf}).then((usuario) => {
+                if(usuario){
+                    erro_dados.push({texto: 'CPF já cadastrado'})
+                    res.render('dados_pessoais', {erros: erro_dados})
+                }else{
+                    Usuario.findByIdAndUpdate(user_id, {cpf: req.body.cpf}, (err, docs) => {
+                        if(err){
+                            erro_dados.push({texto: "Erro ao atualizar CPF"})
+                            res.render("dados_pessoais", {erros: erro_dados})
+                        }else{
+                            erro_dados.push({texto: "CPF atualizado com sucesso!"})
+                            res.render("dados_pessoais", {sucesso: erro_dados})
+                        }
+                    }) 
+                }
+            })
+        }
+        
+        /*
+        Usuario.findByIdAndUpdate(user_id, {cpf: req.body.cpf}, (err, docs) => {
+            if(err){
+                erro_dados.push({texto: "Erro ao atualizar nome"})
+                res.render("dados_pessoais", {erros: erro_dados})
+            }else{
+                erro_dados.push({texto: "CPF atualizado com sucesso!"})
+                res.render("dados_pessoais", {sucesso: erro_dados})
+            }
+        })*/
+        
+        else if(req.body.email != user1.email){
+            //atualiza email do usuário
+            Usuario.findOne({email: req.body.email}).then((usuario) => {
+                if(usuario){
+                    erro_dados.push({texto: 'E-mail já cadastrado'})
+                    res.render('dados_pessoais', {erros: erro_dados})
+                }else{
+                    Usuario.findOneAndUpdate({email: user1.email}, {email: req.body.email}, (error, data) =>{
+                        if(error){
+                            erro_dados.push({texto: 'Erro ao atualizar e-mail'})
+                            res.render('dados_pessoais', {erros: erro_dados})
+                        }else{
+                            erro_dados.push({texto: 'E-mail atualizado com sucesso!'})
+                            res.render('dados_pessoais', {sucesso: erro_dados})
+                        }
+                    })
+                }
+            })
+        }else{
+            res.render("dados_pessoais", {logado: user1})
+        }
+        
+        
+    }
+})
 module.exports = router

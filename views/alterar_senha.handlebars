@@ -7,6 +7,10 @@
     <title>Alterar senha</title>
 </head>
 <body>
+    {{#each erro}}
+    <div>{{texto}}</div>
+    {{else}}
+    {{/each}}
 
     {{#if logado}}
     
@@ -16,9 +20,10 @@
         <div>
             <h3>Alterar senha</h3>
 
-            <form action="" method="post">
-                <p>E-mail atual: {{logado.email}}</p>
-                <input type="text" name="novo_email" id="novo_email" placeholder="Digite sua nova senha"><br><br>
+            <form action="/usuario/senha_alterada" method="post">
+                <input type="text" name="senha_atual" id="senha_atual" placeholder="Digite sua senha atual"><br><br>
+                <input type="text" name="nova_senha" id="nova_senha" placeholder="Digite sua nova senha"><br><br>
+                
 
                 <input type="submit" value="Alterar">
             </form>
