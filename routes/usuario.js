@@ -143,24 +143,48 @@ router.post('/cadastrado', (req, res) => {
     }
 })
 
+//gestão de dados
 router.get("/conta", (req, res) => {
     res.render("conta", {logado: user1})
 })
 
-router.get("/alterar_email", (req, res) => {
-    res.send("alterar_email")
+router.get("/alterar_email", (req, res) =>{
+    res.render("alterar_email", {logado: user1})
 })
 
-router.get("/alterar_senha", (req, res) => {
-    res.send("alterar_senha")
+router.post("/email_alterado", (req, res) =>{
+    var erro_email = []
+
+    if(!req.body.novo_email || typeof req.body.novo_email == undefined || req.body.novo_email == null){
+        erro_email.push({texto: "E-mail inválido ou vazio"})
+    }else{
+
+        Usuario.findOne({email: req.body.novo_email}).then((usuario) => {
+            if(usuario){
+                erro_email.push({texto: 'E-mail já cadastrado'})
+                res.render('alterar_email', {erros: erro_email})
+            }else{
+                Usuario.findOneAndUpdate({email: user1.email}, {email: req.body.novo_email}, (error, data) =>{
+                    if(error){
+                        erro_email.push({texto: 'Erro ao atualizar e-mail'})
+                        res.render('alterar_email', {erros: erro_email})
+                    }else{
+                        erro_email.push({texto: 'E-mail atualizado com sucesso!'})
+                        res.render('login', {sucesso: erro_email})
+                    }
+                })
+            }
+        })
+    }
+
+    if(erro_email.length > 0){
+        res.render("alterar_email", {erros: erro_email})
+    }
+    
 })
 
-router.get("/dados_pessoais", (req, res) => {
-    res.send("dados pessoais")
-})
-
-router.get("/dados_acesso", (req, res) => {
-    res.send("dados_acesso")
+router.get("/alterar_senha", (req, res) =>{
+    res.render("alterar_senha", {logado: user1})
 })
 
 module.exports = router
