@@ -8,7 +8,7 @@ const passport = require('passport')
 var user1 = {}
 
 router.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {logado: user1})
 })
 
 router.get('/login', (req, res) => {

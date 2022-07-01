@@ -1,0 +1,100 @@
+header#cabecalho{
+    background-color:rgba(43.00000123679638, 43.00000123679638, 40.00000141561031, 1);
+	width:1193px;
+	height:231px;
+	margin-top: -10px;
+	margin-left: -8px;
+}
+
+div#barra_pesquisa{
+	margin-left: 330px;
+	margin-top: 116px;
+	position: absolute;
+}
+
+input#campo_pesquisa{ 
+	background-color:rgba(248.0000004172325, 248.0000004172325, 248.0000004172325, 1);
+	width:520px;
+	height:35px;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	border-bottom-left-radius:15px;
+	border-bottom-right-radius:15px;
+	padding: 5px;
+}
+
+div#opcoes_usuario{
+	position: absolute;
+	margin-left: 900px;
+	margin-top: 140px;
+}
+
+div#opcoes_usuario a{
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+}
+
+nav#menu{
+	background-color:rgba(57.2510377317667, 57.2510377317667, 56.1457834392786, 1);
+	width:1193px;
+	height:65px;
+	position: absolute;
+	margin-top: 210px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+nav#menu ul{
+	position: relative;
+	width: 650px;
+	margin-left: 300px;
+	padding: 5px;
+}
+nav#menu li{
+	display: inline-block;
+	margin-left: 50px;
+	position: relative;
+}
+
+nav#menu a{
+	color: white;
+	margin-left: 20px;
+	text-decoration: none;
+}
+
+nav#menu a:hover{
+	border-bottom: 1px solid white;
+}
+
+div#painel_filtro{
+	margin-top: 100px;
+	margin-left: 10px;
+	width:230px;
+	height:480px;
+	padding: 5px;
+	background-color: #f8f8f8;
+}
+
+div#painel_filtro p{
+	text-align: center;
+	font-weight: bold;
+}
+
+section#sessao{
+	margin-top: -490px;
+	margin-left: 310px;
+	width:550px;
+	height:480px;
+	padding: 5px;
+	background-color: white;
+}
+
+aside#roteiros{
+	margin-top: -490px;
+	margin-left: 900px;
+	width:230px;
+	height:480px;
+	padding: 5px;
+	background-color: white;
+}

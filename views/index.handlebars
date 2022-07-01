@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/home.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
@@ -12,8 +13,6 @@
     {{else}}
 
     {{/each}}
-
-    <h1>Home</h1>
     
     <header id="cabecalho">
 
@@ -22,7 +21,7 @@
         </div>
         
         <div id="barra_pesquisa">
-            <input type="text" placeholder="Buscar">
+            <input type="text" placeholder="Buscar" id="campo_pesquisa">
         </div>
 
         <div id="opcoes_usuario">
@@ -124,16 +123,24 @@
         </div>
     </div>
 
-    <div id="painel_vendas">
-        <h1>À venda</h1>
-    </div>
+    <section id="sessao">
+        <div id="painel_vendas">
+            <h1>À venda</h1>
+        </div>
 
-    <div id="painel_aluguel">
-        <h1>Aluga-se</h1>
-    </div>
-
-    <div id="painel_roteiros">
-        <h1>Eventos em destaque</h1>
-    </div>
+        <div id="painel_aluguel">
+            <h1>Aluga-se</h1>
+        </div>
+    </section>
+    
+    <aside id="roteiros">
+        <div id="painel_roteiros">
+            <h1>Eventos em destaque</h1>
+        </div>
+    </aside>
+    
+    <footer id="rodape">
+        <p>BaiBike &copy</p>
+    </footer>
 </body>
 </html>
