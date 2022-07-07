@@ -1,0 +1,113 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;   
+    background-color: #FFFFFF;
+    background-size: cover;
+}
+
+h1{
+    color: #2B2B28;
+}
+
+.login-box {
+    width: 300px;    
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background: rgba(245, 245, 245, 100%);
+    padding: 10px 80px 10px 80px;
+    border-radius: 10px;
+    border: 2px solid #2B2B28;
+    text-align: center;
+    
+}
+
+.login-box hr{
+    border: none;   
+    height: 2px;
+    background-color: #2B2B28;   
+}
+
+.textbox {
+    width: 100%;    
+    font-size: 14px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border: 1px solid #2B2B28;
+    background-color: #FFFFFF;
+    
+}
+
+.textbox i {
+    width: 26px;
+    float: left;
+    text-align: center;
+    color: #2B2B28;    
+}
+
+.textbox input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #2B2B28;
+    font-size: 14px;
+    width: 80%;
+    margin: 0 10px;       
+}
+
+.login-box a {    
+    color: #2B2B28;
+    font-size: 12px;
+    font-family: Roboto;   
+}
+
+.btn {
+    width: 80%;
+    background-color: #FFFFFF;
+    border: 2px solid #2B2B28;
+    color: #2B2B28;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 12px 0;    
+}
+
+.btn:hover {
+    background-color: #2B2B28;
+    color: #FFFFFF;
+    transition: .5s;
+}
+
+.btn:active {
+    background-color: #FFFFFF;
+    color: #2B2B28;
+}
+
+.date {
+    width: 100%;    
+    font-size: 14px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border: 1px solid #2B2B28;
+    background-color: #FFFFFF;
+    
+}
+
+.date input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #2B2B28;
+    font-size: 14px;
+    width: 80%;
+    margin: 0 10px;      
+}
+
+.erro{
+    color: red;
+}
